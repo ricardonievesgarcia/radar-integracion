@@ -398,16 +398,26 @@
   /* back to top */
 
   /* header dropdowns scroll */
-  var myHeaderShortcut = document.getElementById("header-shortcut-scroll");
-  new SimpleBar(myHeaderShortcut, { autoHide: true });
+    var myHeaderShortcut = document.getElementById("header-shortcut-scroll");
+    if (myHeaderShortcut) {
+    new SimpleBar(myHeaderShortcut, { autoHide: true });
+    }
 
-  var myHeadernotification = document.getElementById(
+    var myHeadernotification = document.getElementById(
     "header-notification-scroll"
-  );
-  new SimpleBar(myHeadernotification, { autoHide: true });
+    );
 
-  var myHeaderCart = document.getElementById("header-cart-items-scroll");
-  new SimpleBar(myHeaderCart, { autoHide: true });
+    if (myHeadernotification) {
+    new SimpleBar(myHeadernotification, { autoHide: true });
+    }
+
+    var myHeaderCart = document.getElementById("header-cart-items-scroll");
+
+    if (myHeaderCart) {
+    new SimpleBar(myHeaderCart, { autoHide: true });
+    }
+
+
   /* header dropdowns scroll */
 })();
 
@@ -466,29 +476,29 @@ customSwitch.forEach((e) =>
 /* header dropdown close button */
 
 /* for cart dropdown */
-const headerbtn = document.querySelectorAll(".dropdown-item-close");
-headerbtn.forEach((button) => {
-  button.addEventListener("click", (e) => {
-    e.preventDefault();
-    e.stopPropagation();
-    button.parentNode.parentNode.parentNode.parentNode.parentNode.remove();
-    document.getElementById("cart-data").innerText = `${
-      document.querySelectorAll(".dropdown-item-close").length
-    } Items`;
-    document.getElementById("cart-icon-badge").innerText = `${
-      document.querySelectorAll(".dropdown-item-close").length
-    }`;
-    console.log(
-      document.getElementById("header-cart-items-scroll").children.length
-    );
-    if (document.querySelectorAll(".dropdown-item-close").length == 0) {
-      let elementHide = document.querySelector(".empty-header-item");
-      let elementShow = document.querySelector(".empty-item");
-      elementHide.classList.add("d-none");
-      elementShow.classList.remove("d-none");
-    }
-  });
-});
+// const headerbtn = document.querySelectorAll(".dropdown-item-close");
+// headerbtn.forEach((button) => {
+//   button.addEventListener("click", (e) => {
+//     e.preventDefault();
+//     e.stopPropagation();
+//     button.parentNode.parentNode.parentNode.parentNode.parentNode.remove();
+//     document.getElementById("cart-data").innerText = `${
+//       document.querySelectorAll(".dropdown-item-close").length
+//     } Items`;
+//     document.getElementById("cart-icon-badge").innerText = `${
+//       document.querySelectorAll(".dropdown-item-close").length
+//     }`;
+//     console.log(
+//       document.getElementById("header-cart-items-scroll").children.length
+//     );
+//     if (document.querySelectorAll(".dropdown-item-close").length == 0) {
+//       let elementHide = document.querySelector(".empty-header-item");
+//       let elementShow = document.querySelector(".empty-item");
+//       elementHide.classList.add("d-none");
+//       elementShow.classList.remove("d-none");
+//     }
+//   });
+// });
 /* for cart dropdown */
 
 /* for notifications dropdown */

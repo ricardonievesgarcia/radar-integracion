@@ -144,7 +144,7 @@
                 <!-- End::header-element -->
 
                 <!-- Start::header-element -->
-                <div class="header-element cart-dropdown">
+                {{-- <div class="header-element cart-dropdown">
                     <!-- Start::header-link|dropdown-toggle -->
                     <a href="javascript:void(0);" class="header-link dropdown-toggle" data-bs-auto-close="outside" data-bs-toggle="dropdown">
                         <svg xmlns="http://www.w3.org/2000/svg" class="header-link-icon" width="24" height="24" viewBox="0 0 24 24"><path d="M21.822 7.431A1 1 0 0 0 21 7H7.333L6.179 4.23A1.994 1.994 0 0 0 4.333 3H2v2h2.333l4.744 11.385A1 1 0 0 0 10 17h8c.417 0 .79-.259.937-.648l3-8a1 1 0 0 0-.115-.921zM17.307 15h-6.64l-2.5-6h11.39l-2.25 6z"/><circle cx="10.5" cy="19.5" r="1.5"/><circle cx="17.5" cy="19.5" r="1.5"/></svg>
@@ -262,7 +262,7 @@
                         </div>
                     </div>
                     <!-- End::main-header-dropdown -->
-                </div>
+                </div> --}}
                 <!-- End::header-element -->
 
                 <!-- Start::header-element -->
@@ -399,7 +399,7 @@
                 <!-- End::header-element -->
 
                 <!-- Start::header-element -->
-                <div class="header-element header-shortcuts-dropdown d-md-block d-none">
+                {{-- <div class="header-element header-shortcuts-dropdown d-md-block d-none">
                     <!-- Start::header-link|dropdown-toggle -->
                     <a href="javascript:void(0);" class="header-link dropdown-toggle" data-bs-toggle="dropdown" data-bs-auto-close="outside" id="notificationDropdown" aria-expanded="false">
                     <svg xmlns="http://www.w3.org/2000/svg" class="header-link-icon" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M4 8h4V4H4v4zm6 12h4v-4h-4v4zm-6 0h4v-4H4v4zm0-6h4v-4H4v4zm6 0h4v-4h-4v4zm6-10v4h4V4h-4zm-6 4h4V4h-4v4zm6 6h4v-4h-4v4zm0 6h4v-4h-4v4z"/></svg>
@@ -514,7 +514,7 @@
                         </div>
                     </div>
                     <!-- End::main-header-dropdown -->
-                </div>
+                </div> --}}
                 <!-- End::header-element -->
 
                 <!-- Start::header-element -->
