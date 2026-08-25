@@ -7,7 +7,7 @@
     <div class="d-md-flex d-block align-items-center justify-content-between my-4 page-header-breadcrumb">
         <div>
             <h1 class="page-title fw-semibold fs-20 mb-0">
-                Radar de Integración
+                Radar de Integraciónes
             </h1>
             <div class="">
                 <nav>
