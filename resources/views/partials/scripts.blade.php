@@ -31,10 +31,10 @@
 <script src="{{ asset('assets/nowa/libs/chart.js/chart.min.js') }}"></script>
 
 <!-- Nowa Dashboard JS -->
-<script src="{{ asset('assets/nowa/js/index.js') }}"></script>
+{{-- <script src="{{ asset('assets/nowa/js/index.js') }}"></script> --}}
 
 <!-- Custom Switcher -->
-<script src="{{ asset('assets/nowa/js/custom-switcher.min.js') }}"></script>
+{{-- <script src="{{ asset('assets/nowa/js/custom-switcher.min.js') }}"></script> --}}
 
 <!-- Custom JS -->
 <script src="{{ asset('assets/nowa/js/custom.js') }}"></script>

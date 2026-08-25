@@ -2,7 +2,7 @@
   "use strict";
 
   /* page loader */
-  
+
   function hideLoader() {
     const loader = document.getElementById("loader");
     loader.classList.add("d-none")
@@ -27,207 +27,219 @@
     (popoverTriggerEl) => new bootstrap.Popover(popoverTriggerEl)
   );
 
-  //switcher color pickers
-  const pickrContainerPrimary = document.querySelector(
-    ".pickr-container-primary"
-  );
-  const themeContainerPrimary = document.querySelector(
-    ".theme-container-primary"
-  );
-  const pickrContainerBackground = document.querySelector(
-    ".pickr-container-background"
-  );
-  const themeContainerBackground = document.querySelector(
-    ".theme-container-background"
-  );
 
-  /* for theme primary */
-  const nanoThemes = [
-    [
-      "nano",
-      {
-        defaultRepresentation: "RGB",
-        components: {
-          preview: true,
-          opacity: false,
-          hue: true,
+    //switcher color pickers
+    const pickrContainerPrimary = document.querySelector(
+        ".pickr-container-primary"
+    );
+    const themeContainerPrimary = document.querySelector(
+        ".theme-container-primary"
+    );
+    const pickrContainerBackground = document.querySelector(
+        ".pickr-container-background"
+    );
+    const themeContainerBackground = document.querySelector(
+        ".theme-container-background"
+    );
 
-          interaction: {
-            hex: false,
-            rgba: true,
-            hsva: false,
-            input: true,
-            clear: false,
-            save: false,
-          },
+    if (themeContainerPrimary && pickrContainerPrimary) {
+
+    /* for theme primary */
+    const nanoThemes = [
+        [
+        "nano",
+        {
+            defaultRepresentation: "RGB",
+            components: {
+            preview: true,
+            opacity: false,
+            hue: true,
+
+            interaction: {
+                hex: false,
+                rgba: true,
+                hsva: false,
+                input: true,
+                clear: false,
+                save: false,
+            },
+            },
         },
-      },
-    ],
-  ];
-  const nanoButtons = [];
-  let nanoPickr = null;
-  for (const [theme, config] of nanoThemes) {
-    const button = document.createElement("button");
-    button.innerHTML = theme;
-    nanoButtons.push(button);
+        ],
+    ];
+    const nanoButtons = [];
+    let nanoPickr = null;
+    for (const [theme, config] of nanoThemes) {
+        const button = document.createElement("button");
+        button.innerHTML = theme;
+        nanoButtons.push(button);
 
-    button.addEventListener("click", () => {
-      const el = document.createElement("p");
-      pickrContainerPrimary.appendChild(el);
+        button.addEventListener("click", () => {
+        const el = document.createElement("p");
+        pickrContainerPrimary.appendChild(el);
 
-      /* Delete previous instance */
-      if (nanoPickr) {
-        nanoPickr.destroyAndRemove();
-      }
+        /* Delete previous instance */
+        if (nanoPickr) {
+            nanoPickr.destroyAndRemove();
+        }
 
-      /* Apply active class */
-      for (const btn of nanoButtons) {
-        btn.classList[btn === button ? "add" : "remove"]("active");
-      }
+        /* Apply active class */
+        for (const btn of nanoButtons) {
+            btn.classList[btn === button ? "add" : "remove"]("active");
+        }
 
-      /* Create fresh instance */
-      nanoPickr = new Pickr(
-        Object.assign(
-          {
-            el,
-            theme,
-            default: "#38cab3",
-          },
-          config
-        )
-      );
-
-      /* Set events */
-      nanoPickr.on("changestop", (source, instance) => {
-        let color = instance.getColor().toRGBA();
-        let html = document.querySelector("html");
-        html.style.setProperty(
-          "--primary-rgb",
-          `${Math.floor(color[0])}, ${Math.floor(color[1])}, ${Math.floor(
-            color[2]
-          )}`
+        /* Create fresh instance */
+        nanoPickr = new Pickr(
+            Object.assign(
+            {
+                el,
+                theme,
+                default: "#38cab3",
+            },
+            config
+            )
         );
-        /* theme color picker */
-        localStorage.setItem(
-          "primaryRGB",
-          `${Math.floor(color[0])}, ${Math.floor(color[1])}, ${Math.floor(
-            color[2]
-          )}`
-        );
-        updateColors();
-      });
-    });
 
-    themeContainerPrimary.appendChild(button);
-  }
-  nanoButtons[0].click();
+        /* Set events */
+        nanoPickr.on("changestop", (source, instance) => {
+            let color = instance.getColor().toRGBA();
+            let html = document.querySelector("html");
+            html.style.setProperty(
+            "--primary-rgb",
+            `${Math.floor(color[0])}, ${Math.floor(color[1])}, ${Math.floor(
+                color[2]
+            )}`
+            );
+            /* theme color picker */
+            localStorage.setItem(
+            "primaryRGB",
+            `${Math.floor(color[0])}, ${Math.floor(color[1])}, ${Math.floor(
+                color[2]
+            )}`
+            );
+            updateColors();
+        });
+        });
+
+        themeContainerPrimary.appendChild(button);
+    }
+    nanoButtons[0].click();
   /* for theme primary */
+    }
 
-  /* for theme background */
-  const nanoThemes1 = [
-    [
-      "nano",
-      {
-        defaultRepresentation: "RGB",
-        components: {
-          preview: true,
-          opacity: false,
-          hue: true,
+    if (themeContainerBackground && pickrContainerBackground) {
+    /* for theme background */
+    const nanoThemes1 = [
+        [
+        "nano",
+        {
+            defaultRepresentation: "RGB",
+            components: {
+            preview: true,
+            opacity: false,
+            hue: true,
 
-          interaction: {
-            hex: false,
-            rgba: true,
-            hsva: false,
-            input: true,
-            clear: false,
-            save: false,
-          },
+            interaction: {
+                hex: false,
+                rgba: true,
+                hsva: false,
+                input: true,
+                clear: false,
+                save: false,
+            },
+            },
         },
-      },
-    ],
-  ];
-  const nanoButtons1 = [];
-  let nanoPickr1 = null;
-  for (const [theme, config] of nanoThemes) {
-    const button = document.createElement("button");
-    button.innerHTML = theme;
-    nanoButtons1.push(button);
+        ],
+    ];
+    const nanoButtons1 = [];
+    let nanoPickr1 = null;
+    for (const [theme, config] of nanoThemes) {
+        const button = document.createElement("button");
+        button.innerHTML = theme;
+        nanoButtons1.push(button);
 
-    button.addEventListener("click", () => {
-      const el = document.createElement("p");
-      pickrContainerBackground.appendChild(el);
+        button.addEventListener("click", () => {
+        const el = document.createElement("p");
+        pickrContainerBackground.appendChild(el);
 
-      /* Delete previous instance */
-      if (nanoPickr1) {
-        nanoPickr1.destroyAndRemove();
-      }
+        /* Delete previous instance */
+        if (nanoPickr1) {
+            nanoPickr1.destroyAndRemove();
+        }
 
-      /* Apply active class */
-      for (const btn of nanoButtons) {
-        btn.classList[btn === button ? "add" : "remove"]("active");
-      }
+        /* Apply active class */
+        for (const btn of nanoButtons) {
+            btn.classList[btn === button ? "add" : "remove"]("active");
+        }
 
-      /* Create fresh instance */
-      nanoPickr1 = new Pickr(
-        Object.assign(
-          {
-            el,
-            theme,
-            default: "#38cab3",
-          },
-          config
-        )
-      );
-
-      /* Set events */
-      nanoPickr1.on("changestop", (source, instance) => {
-        let color = instance.getColor().toRGBA();
-        let html = document.querySelector("html");
-        html.style.setProperty(
-          "--body-bg-rgb",
-          `${color[0]}, ${color[1]}, ${color[2]}`
+        /* Create fresh instance */
+        nanoPickr1 = new Pickr(
+            Object.assign(
+            {
+                el,
+                theme,
+                default: "#38cab3",
+            },
+            config
+            )
         );
-        document
-          .querySelector("html")
-          .style.setProperty(
-            "--body-bg-rgb2",
+
+        /* Set events */
+        nanoPickr1.on("changestop", (source, instance) => {
+            let color = instance.getColor().toRGBA();
+            let html = document.querySelector("html");
+            html.style.setProperty(
+            "--body-bg-rgb",
+            `${color[0]}, ${color[1]}, ${color[2]}`
+            );
+            document
+            .querySelector("html")
+            .style.setProperty(
+                "--body-bg-rgb2",
+                `${color[0] + 14}, ${color[1] + 14}, ${color[2] + 14}`
+            );
+            document
+            .querySelector("html")
+            .style.setProperty(
+                "--light-rgb",
+                `${color[0] + 14}, ${color[1] + 14}, ${color[2] + 14}`
+            );
+            document
+            .querySelector("html")
+            .style.setProperty(
+                "--form-control-bg",
+                `rgb(${color[0] + 14}, ${color[1] + 14}, ${color[2] + 14})`
+            );
+            localStorage.removeItem("bgtheme");
+            updateColors();
+            html.setAttribute("data-theme-mode", "dark");
+            html.setAttribute("data-menu-styles", "dark");
+            html.setAttribute("data-header-styles", "dark");
+            document.querySelector("#switcher-dark-theme").checked = true;
+            localStorage.setItem(
+            "bodyBgRGB",
+            `${color[0]}, ${color[1]}, ${color[2]}`
+            );
+            localStorage.setItem(
+            "bodylightRGB",
             `${color[0] + 14}, ${color[1] + 14}, ${color[2] + 14}`
-          );
-        document
-          .querySelector("html")
-          .style.setProperty(
-            "--light-rgb",
-            `${color[0] + 14}, ${color[1] + 14}, ${color[2] + 14}`
-          );
-        document
-          .querySelector("html")
-          .style.setProperty(
-            "--form-control-bg",
-            `rgb(${color[0] + 14}, ${color[1] + 14}, ${color[2] + 14})`
-          );
-        localStorage.removeItem("bgtheme");
-        updateColors();
-        html.setAttribute("data-theme-mode", "dark");
-        html.setAttribute("data-menu-styles", "dark");
-        html.setAttribute("data-header-styles", "dark");
-        document.querySelector("#switcher-dark-theme").checked = true;
-        localStorage.setItem(
-          "bodyBgRGB",
-          `${color[0]}, ${color[1]}, ${color[2]}`
-        );
-        localStorage.setItem(
-          "bodylightRGB",
-          `${color[0] + 14}, ${color[1] + 14}, ${color[2] + 14}`
-        );
-      });
-    });
-    themeContainerBackground.appendChild(button);
-  }
-  nanoButtons1[0].click();
+            );
+        });
+        });
+        themeContainerBackground.appendChild(button);
+    }
+    nanoButtons1[0].click();
   /* for theme background */
-
+    }
   /* header theme toggle */
   function toggleTheme() {
+    const setChecked = (selector, value = true) => {
+    const element = document.querySelector(selector);
+
+    if (element) {
+        element.checked = value;
+    }
+    };
     let html = document.querySelector("html");
     if (html.getAttribute("data-theme-mode") === "dark") {
       console.log("light");
@@ -238,27 +250,27 @@
         html.setAttribute("style", "");
       }
       html.removeAttribute("data-bg-theme");
-      document.querySelector("#switcher-light-theme").checked = true;
-      document.querySelector("#switcher-menu-light").checked = true;
+      setChecked("#switcher-light-theme",true);
+      setChecked("#switcher-menu-light",true);
       document
         .querySelector("html")
         .style.removeProperty("--body-bg-rgb", localStorage.bodyBgRGB);
-      checkOptions();
+      //checkOptions();
 
       html.style.removeProperty("--body-bg-rgb2");
       html.style.removeProperty('--body-bg-rgb');
-      html.style.removeProperty("--light-rgb");	
-      html.style.removeProperty("--form-control-bg");	
+      html.style.removeProperty("--light-rgb");
+      html.style.removeProperty("--form-control-bg");
       html.style.removeProperty("--input-border");
-      
-      document.querySelector("#switcher-header-light").checked = true;
-      document.querySelector("#switcher-menu-light").checked = true;
-      document.querySelector("#switcher-light-theme").checked = true;
-      document.querySelector("#switcher-background4").checked = false;
-      document.querySelector("#switcher-background3").checked = false;
-      document.querySelector("#switcher-background2").checked = false;
-      document.querySelector("#switcher-background1").checked = false;
-      document.querySelector("#switcher-background").checked = false;
+
+      setChecked("#switcher-header-light");
+        setChecked("#switcher-menu-light");
+        setChecked("#switcher-light-theme");
+      setChecked("#switcher-background4", false);
+        setChecked("#switcher-background3", false);
+        setChecked("#switcher-background2", false);
+        setChecked("#switcher-background1", false);
+        setChecked("#switcher-background", false);
       localStorage.removeItem("nowadarktheme");
       localStorage.removeItem("nowaMenu");
       localStorage.removeItem("nowaHeader");
@@ -275,18 +287,19 @@
         html.setAttribute("style", "");
       }
       html.setAttribute("data-menu-styles", "dark");
-      document.querySelector("#switcher-dark-theme").checked = true;
-      document.querySelector("#switcher-menu-dark").checked = true;
-      document.querySelector("#switcher-header-dark").checked = true;
-      checkOptions();
-      document.querySelector("#switcher-menu-dark").checked = true;
-      document.querySelector("#switcher-header-dark").checked = true;
-      document.querySelector("#switcher-dark-theme").checked = true;
-      document.querySelector("#switcher-background4").checked = false;
-      document.querySelector("#switcher-background3").checked = false;
-      document.querySelector("#switcher-background2").checked = false;
-      document.querySelector("#switcher-background1").checked = false;
-      document.querySelector("#switcher-background").checked = false;
+      setChecked("#switcher-dark-theme");
+        setChecked("#switcher-menu-dark");
+        setChecked("#switcher-header-dark");
+      //checkOptions();
+      setChecked("#switcher-menu-dark",true);
+      setChecked("#switcher-header-dark",true);
+      setChecked("#switcher-dark-theme",true);
+      setChecked("#switcher-background4", false);
+        setChecked("#switcher-background3", false);
+        setChecked("#switcher-background2", false);
+        setChecked("#switcher-background1", false);
+        setChecked("#switcher-background", false);
+      setChecked("#switcher-background",false);
       localStorage.setItem("nowadarktheme", "true");
       localStorage.setItem("nowaMenu", "dark");
       localStorage.setItem("nowaHeader", "dark");
@@ -314,7 +327,7 @@
   /* Choices JS */
 
   /* footer year */
-  document.getElementById("year").innerHTML = new Date().getFullYear();
+//   document.getElementById("year").innerHTML = new Date().getFullYear();
   /* footer year */
 
   /* node waves */
@@ -399,8 +412,10 @@
 })();
 
 /* full screen */
-var elem = document.documentElement;
+
 function openFullscreen() {
+  const elem = document.documentElement;
+
   let open = document.querySelector(".full-screen-open");
   let close = document.querySelector(".full-screen-close");
 
@@ -412,26 +427,25 @@ function openFullscreen() {
     if (elem.requestFullscreen) {
       elem.requestFullscreen();
     } else if (elem.webkitRequestFullscreen) {
-      /* Safari */
       elem.webkitRequestFullscreen();
     } else if (elem.msRequestFullscreen) {
-      /* IE11 */
       elem.msRequestFullscreen();
     }
+
     close.classList.add("d-block");
     close.classList.remove("d-none");
     open.classList.add("d-none");
+
   } else {
+
     if (document.exitFullscreen) {
       document.exitFullscreen();
     } else if (document.webkitExitFullscreen) {
-      /* Safari */
       document.webkitExitFullscreen();
-      console.log("working");
     } else if (document.msExitFullscreen) {
-      /* IE11 */
       document.msExitFullscreen();
     }
+
     close.classList.remove("d-block");
     open.classList.remove("d-none");
     close.classList.add("d-none");
