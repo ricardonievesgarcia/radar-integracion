@@ -563,7 +563,15 @@
                         <li><a class="dropdown-item d-flex border-bottom" href="mail.html"><i class="far fa-envelope  fs-16 me-2 op-7"></i>Inbox <span class="badge bg-success-transparent ms-auto">25</span></a></li>
                         <li><a class="dropdown-item d-flex border-bottom border-block-end" href="chat.html"><i class="far fa-comment-dots fs-16 me-2 op-7"></i>Messages</a></li>
                         <li><a class="dropdown-item d-flex border-bottom" href="mail-settings.html"><i class="far fa-sun fs-16 me-2 op-7"></i>Settings</a></li>
-                        <li><a class="dropdown-item d-flex" href="signin.html"><i class="far fa-arrow-alt-circle-left fs-16 me-2 op-7"></i>Sign Out</a></li>
+                        <li>
+                            <form method="POST" action="{{ route('logout') }}">
+                                @csrf
+                                <button type="submit" class="dropdown-item d-flex">
+                                    <i class="far fa-arrow-alt-circle-left fs-16 me-2 op-7"></i>
+                                    Cerrar sesión
+                                </button>
+                            </form>
+                        </li>
                     </ul>
                 </div>
                 <!-- End::header-element -->
