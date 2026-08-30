@@ -6,6 +6,7 @@ use App\Models\UserSession;
 use Illuminate\Http\JsonResponse;
 use Laravel\Fortify\Contracts\LoginResponse as LoginResponseContract;
 use Symfony\Component\HttpFoundation\Response;
+use App\Services\Security\AuditService;
 
 class LoginResponse implements LoginResponseContract
 {
@@ -13,7 +14,7 @@ class LoginResponse implements LoginResponseContract
     {
         $user = $request->user();
 
-        UserSession::updateOrCreate(
+        $userSession = UserSession::updateOrCreate(
             [
                 'session_id' => $request->session()->getId(),
             ],
@@ -28,6 +29,17 @@ class LoginResponse implements LoginResponseContract
                 'revoked_by' => null,
                 'logout_reason' => null,
             ]
+        );
+
+        app(AuditService::class)->log(
+            event: 'LOGIN_SUCCESS',
+            userId: $user->id,
+            auditableType: UserSession::class,
+            auditableId: $userSession->id,
+            metadata: [
+                'session_id' => $request->session()->getId(),
+            ],
+            request: $request
         );
 
         $user->forceFill([

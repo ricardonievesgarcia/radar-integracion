@@ -4,6 +4,7 @@ namespace App\Listeners;
 
 use App\Models\UserSession;
 use Illuminate\Auth\Events\Logout;
+use App\Services\Security\AuditService;
 
 class RegisterUserLogout
 {
@@ -16,5 +17,13 @@ class RegisterUserLogout
                 'last_seen_at' => now(),
                 'logout_reason' => 'LOGOUT',
             ]);
+
+        app(AuditService::class)->log(
+            event: 'LOGOUT',
+            userId: $event->user?->id,
+            metadata: [
+                'session_id' => session()->getId(),
+            ]
+        );
     }
 }
